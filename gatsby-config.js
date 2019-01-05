@@ -2,6 +2,10 @@ const STRAVA_AUTH_QUERY = "?client_id=31292&response_type=code&redirect_uri=http
 const STRAVA_AUTH_URL_MOBILE = "https://www.strava.com/oauth/mobile/authorize";
 const STRAVA_AUTH_URL_DESKTOP = "https://www.strava.com/oauth/authorize";
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `EWCC Official Stats`,
