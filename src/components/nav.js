@@ -26,6 +26,8 @@ class Nav extends React.Component {
   }
 
   componentDidMount() {
+    netlifyIdentity.init();
+    window.netlifyIdentity = netlifyIdentity;
     netlifyIdentity.on("login", () => this.afterLogIn());
     netlifyIdentity.on("logout", () => this.setState({ loggedIn: false }));
   }

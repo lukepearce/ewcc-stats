@@ -1,14 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import netlifyIdentity from 'netlify-identity-widget';
 
 import Header from './header'
 import './layout.css'
-
-// Make netlifyIdentity accessible in the browser console
-window.netlifyIdentity = netlifyIdentity;
-netlifyIdentity.init();
 
 const Layout = ({ children }) => (
   <StaticQuery
