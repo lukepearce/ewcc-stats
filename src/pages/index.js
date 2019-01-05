@@ -4,23 +4,32 @@ import { graphql, Link } from 'gatsby'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
 
-const IndexPage = () => {
-  let greeting = 'Hi';
-  const user = window.netlifyIdentity.currentUser();
-  if (user) {
-    greeting = `${greeting}, ${user.user_metadata.full_name}`;
+class IndexPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      greeting: 'Hi',
+    };
   }
 
-  return (
-    <Layout>
-      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-      <h1>{greeting}</h1>
-      <p>Welcome to the start of a new place to keep track (and brag) about our Strava stats.</p>
+  componentDidMount() {
+    const user = window.netlifyIdentity.currentUser();
+    console.log(user);
+    if (user) {
+      this.setState({ greeting: `Hi, ${user.user_metadata.full_name}` });
+    }
+  }
 
-
-      <div id="authorize-strava">Authorize Strava</div>
-    </Layout>
-  );
+  render() {
+    return (
+      <Layout>
+        <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
+        <h1>{this.state.greeting}</h1>
+        <p>Welcome to the start of a new place to keep track (and brag) about our Strava stats.</p>
+      </Layout>
+    );
+  }
 };
 
 export default IndexPage
