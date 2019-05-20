@@ -19,16 +19,17 @@ class Nav extends React.Component {
     netlifyIdentity.logout();
   }
 
-  afterLogIn() {
+  afterLogIn(user) {
     netlifyIdentity.close();
-    window.location.replace(`https://www.strava.com/oauth/mobile/authorize?client_id=31292&response_type=code&redirect_uri=http://localhost:8000/auth&approval_prompt=force&scope=profile:read_all,activity:read`);
+    console.log(user);
+    //window.location.replace(`https://www.strava.com/oauth/mobile/authorize?client_id=31292&response_type=code&redirect_uri=http://localhost:8000/auth&approval_prompt=force&scope=profile:read_all,activity:read_all`);
     this.setState({ loggedIn: true });
   }
 
   componentDidMount() {
     netlifyIdentity.init();
     window.netlifyIdentity = netlifyIdentity;
-    netlifyIdentity.on("login", () => this.afterLogIn());
+    netlifyIdentity.on("login", user => this.afterLogIn(user));
     netlifyIdentity.on("logout", () => this.setState({ loggedIn: false }));
   }
 
@@ -41,7 +42,6 @@ class Nav extends React.Component {
         link = <a
           href="#"
           onClick={ this.handleLogInClick }
-          style={{ color: "white", textDecoration: "none" }}
         >
           Sign up | Log in
         </a>;
@@ -50,7 +50,6 @@ class Nav extends React.Component {
       link = <a
         href="#"
         onClick={ this.handleLogOutClick }
-        style={{ color: "white", textDecoration: "none" }}
       >
         Log out
       </a>;
@@ -69,7 +68,6 @@ class Nav extends React.Component {
           }}>
             <Link
               to="/strava"
-              style={{ color: "white", textDecoration: "none" }}
               activeStyle={{ textDecoration: "underline" }}
             >
               Profile
@@ -81,7 +79,6 @@ class Nav extends React.Component {
           }}>
             <Link
               to="/roadmap"
-              style={{ color: "white", textDecoration: "none" }}
               activeStyle={{ textDecoration: "underline" }}
             >
               Roadmap
@@ -93,7 +90,6 @@ class Nav extends React.Component {
           }}>
             <Link
               to="/users"
-              style={{ color: "white", textDecoration: "none" }}
               activeStyle={{ textDecoration: "underline" }}
             >
               Club Members

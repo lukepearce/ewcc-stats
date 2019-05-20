@@ -36,7 +36,9 @@ const getUser = async (event, context) => {
 };
 
 const IndexPage = (props) => {
-  const members = props.data.stravaClub.clubData;
+  const members = props.data.stravaClub.clubData.sort(function(a, b) {
+    return a['firstname'] - b['lastname'];
+  });
 
   return (
     <Layout>

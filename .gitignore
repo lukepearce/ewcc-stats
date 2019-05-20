@@ -58,6 +58,7 @@ typings/
 .cache/
 public
 .idea/*
+schema.json
 
 # Mac files
 .DS_Store

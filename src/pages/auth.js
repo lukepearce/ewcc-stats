@@ -39,13 +39,6 @@ class Auth extends React.Component {
   }
 
   componentDidMount() {
-    // once we have all users in dato
-    // create source that gets users refresh tokens
-    // loop over each user
-    // get new access token
-    // get data
-    // map to node as athlete
-
     // This needs to live in a lambda function
     const parsed = queryString.parse(location.search);
 

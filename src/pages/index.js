@@ -1,4 +1,6 @@
 import React from 'react'
+import { Heading } from '@rebass/emotion';
+import { css } from '@emotion/core';
 import { graphql, Link } from 'gatsby'
 
 import SEO from '../components/seo'
@@ -20,12 +22,25 @@ class IndexPage extends React.Component {
       this.setState({ greeting: `Hi, ${user.user_metadata.full_name}` });
     }
   }
+  
 
   render() {
+    const headerStyles = css`
+      color: #343434;
+      line-height: 1.21;
+      font-size: 48px;
+      font-family: 'Helvetica';
+      font-weight: 700;
+    `;
+    console.log(headerStyles);
     return (
       <Layout>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]}/>
-        <h1>{this.state.greeting}</h1>
+        <Heading
+          css={headerStyles}
+        >
+          {this.state.greeting}
+        </Heading>
         <p>Welcome to the start of a new place to keep track (and brag) about our Strava stats.</p>
       </Layout>
     );
@@ -34,13 +49,13 @@ class IndexPage extends React.Component {
 
 export default IndexPage
 
-export const query = graphql`
-  {
-    stravaClub {
-      clubData {
-        firstname
-        lastname
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   {
+//     stravaClub {
+//       clubData {
+//         firstname
+//         lastname
+//       }
+//     }
+//   }
+// `;
